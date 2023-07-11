@@ -1,7 +1,6 @@
 import style from "../VideogameCard/VideogameCard.module.css";
-import { useState } from "react";
 
-function Videogame({
+function VideogameCard({
   id,
   name,
   description,
@@ -11,17 +10,15 @@ function Videogame({
   rating,
   genres,
 }) {
+  const genresToString = genres
+    ? genres.map((genre) => genre.name).join(", ")
+    : " ";
   return (
-    <div>
-      <h1>{id}</h1>
+    <div className={style.card}>
       <p>{name}</p>
-      <p>{description}</p>
-      <p>{platforms}</p>
-      <p>{image}</p>
-      <p>{launchDate}</p>
-      <p>{rating}</p>
-      {/* <p>{genres}</p> */}
+      <p>{genresToString}</p>
+      <img src={image} alt={name} className={style.image} />
     </div>
   );
 }
-export default Videogame;
+export default VideogameCard;

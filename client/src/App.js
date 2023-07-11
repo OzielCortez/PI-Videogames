@@ -2,7 +2,7 @@ import "./App.css";
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import WelcomePage from "./components/WelcomePage/WelcomePage";
-import Home from "./components/Home/Home.jsx";
+import Home from "./components/Home/Home";
 import Form from "./components/Form/Form.jsx";
 import VideogameDetail from "./components/VideogameDetail/VideogameDetail.jsx";
 
@@ -13,8 +13,8 @@ function App() {
       <Routes>
         <Route path="/" element={<WelcomePage />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/create" element={<Form />} />
-        <Route path="/detail/:id" element={<VideogameDetail />} />
+        <Route path="/videogames" element={<Form />} />
+        <Route path="/videogames/:id" element={<VideogameDetail />} />
       </Routes>
     </>
   );

@@ -20,6 +20,7 @@ const postVideogames = async ({
       image,
       launchDate,
       rating,
+      /* genres, */
     });
     await createVideogame.setGenres(genres);
     return createVideogame;
