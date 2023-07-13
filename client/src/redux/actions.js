@@ -8,6 +8,8 @@ export const GET_VIDEOGAME_BY_NAME = "GET_VIDEOGAME_BY_NAME";
 export const ORDER_ALL_VIDEOGAMES = "ORDER_ALL_VIDEOGAMES";
 export const FILTER_BY_GENRE = "FILTER_BY_GENRE";
 export const FILTER_DBAPI = "FILTER_DBAPI";
+export const CHANGE_PAGE = "CHANGE_PAGE";
+export const SET_PAGE = "SET_PAGE";
 
 const URL_BASE = "http://localhost:3001";
 
@@ -63,5 +65,19 @@ export const filterDbApi = (payload) => {
   return {
     type: FILTER_DBAPI,
     payload: payload,
+  };
+};
+
+export const changePage = (payload) => {
+  return {
+    type: CHANGE_PAGE,
+    payload: payload++,
+  };
+};
+
+export const setPage = (payload) => {
+  return {
+    type: SET_PAGE,
+    payload,
   };
 };

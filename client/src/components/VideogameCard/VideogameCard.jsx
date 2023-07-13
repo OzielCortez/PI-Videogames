@@ -14,7 +14,7 @@ function VideogameCard({ id, name, image, launchDate, genres }) {
   return (
     <div className={style.card}>
       <Link to={`/videogames/${id}`}>
-        <p>{name}</p>
+        <p className={style.name_grid}>{name}</p>
       </Link>
       <p>{genresToString}</p>
       <img src={image} alt={name} className={style.image} />

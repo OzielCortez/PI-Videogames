@@ -7,6 +7,8 @@ import {
   ORDER_ALL_VIDEOGAMES,
   FILTER_BY_GENRE,
   FILTER_DBAPI,
+  CHANGE_PAGE,
+  SET_PAGE,
 } from "./actions";
 const initialState = {
   videogames: [],
@@ -14,6 +16,7 @@ const initialState = {
   searchResults: [],
   selectedVideogame: [],
   videogamesBackup: [],
+  currentPage: 1,
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -35,6 +38,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         else if (payload === "Z-A") return b.name.localeCompare(a.name);
         else if (payload === "ASC") return a.rating - b.rating;
         else if (payload === "DESC") return b.rating - a.rating;
+        else return "";
       });
       return { ...state, videogames: orderVideogames };
     case FILTER_BY_GENRE:
@@ -61,6 +65,10 @@ const rootReducer = (state = initialState, { type, payload }) => {
         resultVideogame = videogameCopy.filter((v) => !v.source);
       }
       return { ...state, videogames: resultVideogame };
+    case CHANGE_PAGE:
+      return { ...state, currentPage: payload };
+    case SET_PAGE:
+      return { ...state, currentPage: payload };
     default:
       return { ...state };
   }

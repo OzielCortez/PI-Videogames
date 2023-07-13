@@ -7,13 +7,23 @@ import { getVideogames } from "../../redux/actions";
 import SearchBar from "../SearchBar/SearchBar";
 import FilterGenre from "../Filters/FilterGenre";
 import FilterApi from "../Filters/FilterApi";
+import Pagination from "../Pagination/Pagination";
 
 function Home() {
   const dispatch = useDispatch();
   const videogames = useSelector((state) => state.videogames);
+  const currentPage = useSelector((state) => state.currentPage);
+
+  const videogamesPerPage = 15;
+  const lastIndex = currentPage * videogamesPerPage;
+  const firstIndex = lastIndex - videogamesPerPage;
+
+  const showGames = videogames.slice(firstIndex, lastIndex);
+
+  const totalPages = Math.ceil(videogames?.length / videogamesPerPage);
 
   useEffect(() => {
-    if (videogames) dispatch(getVideogames());
+    dispatch(getVideogames());
   }, [dispatch]);
 
   return (
@@ -24,19 +34,19 @@ function Home() {
       <FilterGenre />
       <FilterApi />
       <h4>Lista de videojuegos</h4>
-      <h1>
-        {videogames.map((videogame) => {
-          return (
-            <VideogameCard
-              key={videogame.id}
-              id={videogame.id}
-              name={videogame.name}
-              image={videogame.image}
-              genres={videogame.genres}
-            />
-          );
-        })}
-      </h1>
+
+      {showGames.map((videogame) => {
+        return (
+          <VideogameCard
+            key={videogame.id}
+            id={videogame.id}
+            name={videogame.name}
+            image={videogame.image}
+            genres={videogame.genres}
+          />
+        );
+      })}
+      <Pagination totalPages={totalPages} />
     </div>
   );
 }
