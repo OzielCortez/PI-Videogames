@@ -4,7 +4,7 @@ const axios = require("axios");
 const { YOUR_API_KEY } = process.env;
 
 const getVideogamesApi = async () => {
-  const pagesquantity = 5;
+  const pagesquantity = 6;
   let responseVideogames = [];
 
   for (let index = 1; index < pagesquantity; index++) {

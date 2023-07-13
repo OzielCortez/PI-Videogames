@@ -10,7 +10,7 @@ const getVideogamesById = async (id) => {
       `https://api.rawg.io/api/games/${id}?key=${YOUR_API_KEY}`
     );
 
-    if (!getVideogame || !getVideogameApi)
+    if (!getVideogame && !getVideogameApi)
       return { status: 404, message: "Videogame id doesn't exists" };
     const getVideogame = [...getVideogameDB, ...getVideogameApi];
     return getVideogame;

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getGenres, getVideogames } from "../../redux/actions";
+import { getGenres } from "../../redux/actions";
 import { filterByGenre } from "../../redux/actions";
 import { useEffect } from "react";
 
@@ -13,9 +13,7 @@ const FilterGenre = () => {
 
   const filterGen = (event) => {
     event.preventDefault();
-    if (event.target.value !== "All")
-      dispatch(filterByGenre(event.target.value));
-    else dispatch(getVideogames());
+    dispatch(filterByGenre(event.target.value));
   };
   return (
     <div>

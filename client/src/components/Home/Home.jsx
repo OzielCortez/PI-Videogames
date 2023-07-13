@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getVideogames } from "../../redux/actions";
 import SearchBar from "../SearchBar/SearchBar";
 import FilterGenre from "../Filters/FilterGenre";
+import FilterApi from "../Filters/FilterApi";
 
 function Home() {
   const dispatch = useDispatch();
@@ -21,12 +22,13 @@ function Home() {
       <SearchBar />
       <OrderVideogames />
       <FilterGenre />
+      <FilterApi />
       <h4>Lista de videojuegos</h4>
       <h1>
         {videogames.map((videogame) => {
           return (
             <VideogameCard
-              key={videogame.name}
+              key={videogame.id}
               id={videogame.id}
               name={videogame.name}
               image={videogame.image}

@@ -6,9 +6,7 @@ import {
   CREATE_VIDEOGAME,
   ORDER_ALL_VIDEOGAMES,
   FILTER_BY_GENRE,
-  RESET_FILTER,
   FILTER_DBAPI,
-  getVideogames,
 } from "./actions";
 const initialState = {
   videogames: [],
@@ -40,17 +38,29 @@ const rootReducer = (state = initialState, { type, payload }) => {
       });
       return { ...state, videogames: orderVideogames };
     case FILTER_BY_GENRE:
-      const copyVideogame = [...state.videogames];
-      const objetosFiltrados = copyVideogame.filter((objeto) => {
-        return objeto.genres.some((genre) => genre.name === payload);
-      });
+      let copyVideogame = [...state.videogames];
+      let objetosFiltrados = [];
+      if (payload === "All") objetosFiltrados = state.videogamesBackup;
+      else {
+        copyVideogame = state.videogamesBackup;
+        objetosFiltrados = copyVideogame.filter((objeto) => {
+          return objeto.genres.some((genre) => genre.name === payload);
+        });
+      }
       return { ...state, videogames: objetosFiltrados };
-    /* case FILTER_DBAPI:
-      const videogameCopy = [...state.videogames];
-      if(payload === "All") return getVideogames();
-      else if(payload === "Db") return 
-      else if(payload === "Api")
-      return {...state} */
+    case FILTER_DBAPI:
+      let videogameCopy = [...state.videogames];
+      let resultVideogame = [];
+      if (payload === "All") {
+        resultVideogame = state.videogamesBackup;
+      } else if (payload === "Db") {
+        videogameCopy = state.videogamesBackup;
+        resultVideogame = videogameCopy.filter((v) => v.source === "Db");
+      } else if (payload === "Api") {
+        videogameCopy = state.videogamesBackup;
+        resultVideogame = videogameCopy.filter((v) => !v.source);
+      }
+      return { ...state, videogames: resultVideogame };
     default:
       return { ...state };
   }

@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "../Form/Form.module.css";
-import axios from "axios";
 import { useState } from "react";
-import { createVideogame } from "../../redux/actions";
-import { useDispatch } from "react-redux";
+import { createVideogame, getGenres } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import validate from "./validate";
 
 function Form() {
   const dispatch = useDispatch();
+  const genres = useSelector((state) => state.genres);
+
   const [videogame, setVideogame] = useState({
     name: "",
     description: "",
@@ -14,18 +16,84 @@ function Form() {
     image: "",
     launchDate: "",
     rating: 0,
-    genres: 0,
+    genres: [],
   });
+
+  const [errors, setErrors] = useState({
+    name: "",
+    description: "",
+    image: "",
+    launchDate: "",
+    rating: "",
+    genres: "",
+  });
+
+  const [selectedGenres, setSelectedGenres] = useState([]);
+
+  useEffect(() => {
+    if (genres) dispatch(getGenres());
+  }, [dispatch]);
+
   const handleChange = (event) => {
-    setVideogame({ ...videogame, [event.target.name]: event.target.value });
+    setVideogame({
+      ...videogame,
+      [event.target.name]: event.target.value,
+    });
+    setErrors(
+      validate({ ...videogame, [event.target.name]: event.target.value })
+    );
   };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await dispatch(createVideogame(videogame));
+    //Si hago con !errors siempre será verdadero si devuelve {}
+    if (Object.keys(errors).length === 0) {
+      dispatch(createVideogame({ ...videogame, genres: [...selectedGenres] }));
+      setVideogame({
+        name: "",
+        description: "",
+        platforms: "",
+        image: "",
+        launchDate: "",
+        rating: 0,
+      });
+      setSelectedGenres([]);
+      alert("Se ha creado con exito");
+    } else {
+      alert("Cumplir con los requisitos antes de crear un videojuego");
+    }
+  };
+
+  const handleSelectedGenres = async (event) => {
+    let genreId = event.target.value;
+    if (event.target.checked) {
+      setSelectedGenres([...selectedGenres, parseInt(genreId)]);
+      setVideogame({ ...videogame, genres: selectedGenres });
+      setErrors(
+        validate({
+          ...videogame,
+          genres: [...videogame.genres, event.target.value],
+        })
+      );
+    } else {
+      //Cuando se deseleccionan los checkboxs, estos actualizan
+      setSelectedGenres(
+        selectedGenres.filter((id) => id !== parseInt(genreId))
+      );
+      setErrors(
+        validate(
+          {
+            ...videogame,
+            genres: videogame.genres.filter((vg) => vg !== event.target.value),
+          },
+          [...genres]
+        )
+      );
+    }
   };
   return (
     <form action="">
-      <label htmlFor="">Name:</label>
+      <label htmlFor="">Name: </label>
       <input
         type="text"
         name="name"
@@ -33,8 +101,9 @@ function Form() {
         value={videogame.name}
         onChange={handleChange}
       />
-      {console.log(videogame.name)}
-      <label htmlFor="">Description:</label>
+      {errors.name ? <span>{errors.name}</span> : <span></span>}
+
+      <label htmlFor="">Description: </label>
       <input
         type="text"
         name="description"
@@ -42,6 +111,8 @@ function Form() {
         value={videogame.description}
         onChange={handleChange}
       />
+      {errors.description ? <span>{errors.description}</span> : <span></span>}
+
       <label htmlFor="">Platforms: </label>
       <input
         type="text"
@@ -50,6 +121,7 @@ function Form() {
         value={videogame.platforms}
         onChange={handleChange}
       />
+
       <label htmlFor="">Image: </label>
       <input
         type="url"
@@ -58,7 +130,9 @@ function Form() {
         value={videogame.image}
         onChange={handleChange}
       />
-      <label htmlFor="">LaunchDate: </label>
+      {errors.image ? <span>{errors.image}</span> : <span></span>}
+
+      <label htmlFor="">Launch date: </label>
       <input
         type="text"
         name="launchDate"
@@ -66,25 +140,37 @@ function Form() {
         value={videogame.launchDate}
         onChange={handleChange}
       />
+      {errors.launchDate ? <span>{errors.launchDate}</span> : <span></span>}
+
       <label htmlFor="">Rating: </label>
       <input
-        type="number"
-        min={1}
-        max={100}
+        type="text"
         name="rating"
         placeholder="Enter a rating"
         value={videogame.rating}
         onChange={handleChange}
       />
-      <label htmlFor="">Genres: </label>
-      <input
-        type="text"
-        name="genres"
-        placeholder="Enter a videogame gender..."
-        value={videogame.genres}
-        onChange={handleChange}
-      />
-      <button onClick={handleSubmit}>Submit</button>
+      {errors.rating ? <span>{errors.rating}</span> : <span></span>}
+      <hr />
+      <label>Genres: </label>
+      {errors.genres ? <span>{errors.genres}</span> : <span></span>}
+      {genres?.map((genre) => {
+        return (
+          <p key={genre.id}>
+            <label>{genre.name}</label>
+            <input
+              type="checkbox"
+              value={genre.id}
+              id={genre.id}
+              onChange={handleSelectedGenres}
+              checked={selectedGenres.includes(genre.id)}
+            />
+          </p>
+        );
+      })}
+      <button type="button" onClick={handleSubmit}>
+        Create
+      </button>
     </form>
   );
 }
