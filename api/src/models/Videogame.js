@@ -20,10 +20,10 @@ module.exports = (sequelize) => {
         type: DataTypes.TEXT,
         allowNull: true,
       },
-      platforms: {
+      /* platforms: {
         type: DataTypes.ENUM("Xbox", "Playstation", "Nintendo", "PC"),
         allowNull: false,
-      },
+      }, */
       image: {
         type: DataTypes.STRING,
         allowNull: false,
