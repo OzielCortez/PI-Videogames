@@ -16,9 +16,8 @@ function VideogameDetail() {
   }, [id]);
 
   return (
-    <div>
-      <p>Detail</p>
-      <p>{`Name: ${videogame?.name}`}</p>
+    <div className={styles.background}>
+      <h1>{`${videogame?.name}`}</h1>
       <p>{`Description: ${videogame.description?.replace(/<[^>]*>/g, "")}`}</p>
       <p>{`Platforms: ${
         videogame.platforms &&
@@ -41,7 +40,7 @@ function VideogameDetail() {
       />
       <hr />
       <Link to={"/home"}>
-        <button>Go home</button>
+        <button className={styles.button}>Go home</button>
       </Link>
     </div>
   );

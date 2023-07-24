@@ -95,14 +95,18 @@
   background-color: gainsboro;
   display: flex; /* Usar flex para organizar los elementos internos */
   flex-direction: column; /* Alinear los elementos verticalmente */
-  min-height: 100vh; /* Asegurar que el contenedor tenga al menos la altura de la ventana */
+  /* Asegurar que el contenedor tenga al menos la altura de la ventana */
   margin: 0; /* Resetear márgenes para evitar espacios no deseados */
   padding: 0;
+  height: 900px;
 }
 .columns {
   flex: 0 0 auto; /* No crecer ni encoger, tamaño automático */
   background-image: url("C:/Users/oziel/Desktop/PI-Videogames-main/client/src/assets/topBar.png");
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 1920px;
+  height: 133px;
 }
 .body_videogames {
   flex: 1; /* Crecer para ocupar el espacio disponible */
@@ -110,10 +114,17 @@
   transition: transform 1s ease;
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
+  gap: 20px;
 }
 
 .footer {
-  flex: 0 0 auto; /* No crecer ni encoger, tamaño automático */
   background-image: url("C:/Users/oziel/Desktop/PI-Videogames-main/client/src/assets/bottomBarwNintendo.png");
+  background-repeat: no-repeat;
   background-size: cover;
+  height: 120px;
+  display: block;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
 }

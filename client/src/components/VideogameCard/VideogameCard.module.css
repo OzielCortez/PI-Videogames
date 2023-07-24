@@ -6,7 +6,10 @@
   width: 400px;
   cursor: pointer;
   margin: 30px;
-  background-image: url("https://i.pinimg.com/564x/24/e7/59/24e75930a8f463192dadb16fe58bdf29.jpg");
+  background-color: rgba(5, 62, 82, 0.3);
+  border-radius: 5%;
+
+  /* background-image: url("https://i.pinimg.com/564x/24/e7/59/24e75930a8f463192dadb16fe58bdf29.jpg"); */
   background-size: 100%;
   text-align: center;
   justify-content: center;

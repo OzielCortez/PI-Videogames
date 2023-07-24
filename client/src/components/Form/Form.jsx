@@ -134,105 +134,112 @@ function Form() {
   };
 
   return (
-    <form action="">
-      <label htmlFor="">Name: </label>
-      <input
-        type="text"
-        name="name"
-        placeholder="Nombre de videojuego..."
-        value={videogame.name}
-        onChange={handleChange}
-      />
-      {errors.name ? <span>{errors.name}</span> : <span></span>}
+    <div className={styles.fondo}>
+      <form action="" className={styles.background}>
+        <div className={styles.formGroup}>
+          <label htmlFor="">Name: </label>
+          <input
+            type="text"
+            name="name"
+            placeholder="Nombre de videojuego..."
+            value={videogame.name}
+            onChange={handleChange}
+          />
+          {errors.name ? <span>{errors.name}</span> : <span></span>}
+        </div>
+        <div className={styles.formGroup}>
+          <label htmlFor="">Description: </label>
+          <input
+            type="text"
+            name="description"
+            placeholder="Breve descripción"
+            value={videogame.description}
+            onChange={handleChange}
+          />
 
-      <label htmlFor="">Description: </label>
-      <input
-        type="text"
-        name="description"
-        placeholder="Breve descripción"
-        value={videogame.description}
-        onChange={handleChange}
-      />
-      {errors.description ? <span>{errors.description}</span> : <span></span>}
-      {/* 
-      <label htmlFor="">Platforms: </label>
-      <input
-        type="text"
-        name="platforms"
-        placeholder="Disponibilidad en plataformas"
-        value={videogame.platforms}
-        onChange={handleChange}
-      /> */}
+          {errors.description ? (
+            <span>{errors.description}</span>
+          ) : (
+            <span></span>
+          )}
+        </div>
+        <label htmlFor="">Image: </label>
+        <input
+          type="url"
+          name="image"
+          placeholder="Enter url"
+          value={videogame.image}
+          onChange={handleChange}
+        />
+        {errors.image ? <span>{errors.image}</span> : <span></span>}
 
-      <label htmlFor="">Image: </label>
-      <input
-        type="url"
-        name="image"
-        placeholder="Enter url"
-        value={videogame.image}
-        onChange={handleChange}
-      />
-      {errors.image ? <span>{errors.image}</span> : <span></span>}
+        <label htmlFor="">Launch date: </label>
+        <input
+          type="text"
+          name="launchDate"
+          placeholder="Fecha de lanzamiento"
+          value={videogame.launchDate}
+          onChange={handleChange}
+        />
+        {errors.launchDate ? <span>{errors.launchDate}</span> : <span></span>}
 
-      <label htmlFor="">Launch date: </label>
-      <input
-        type="text"
-        name="launchDate"
-        placeholder="Fecha de lanzamiento"
-        value={videogame.launchDate}
-        onChange={handleChange}
-      />
-      {errors.launchDate ? <span>{errors.launchDate}</span> : <span></span>}
+        <label htmlFor="">Rating: </label>
+        <input
+          type="text"
+          name="rating"
+          placeholder="Enter a rating"
+          value={videogame.rating}
+          onChange={handleChange}
+        />
+        {errors.rating ? <span>{errors.rating}</span> : <span></span>}
+        <hr />
+        <div class={styles.checkboxContainer}>
+          <div class={styles.column}>
+            <h4>Genres:</h4>
+            {errors.genres ? <span>{errors.genres}</span> : <span></span>}
+            {genres?.map((genre) => {
+              return (
+                <label key={genre.id} className={styles.checkboxLabel}>
+                  {genre.name}
+                  <input
+                    type="checkbox"
+                    value={genre.id}
+                    id={genre.id}
+                    onChange={handleSelectedGenres}
+                    checked={selectedGenres.includes(genre.id)}
+                  />
+                </label>
+              );
+            })}
+          </div>
 
-      <label htmlFor="">Rating: </label>
-      <input
-        type="text"
-        name="rating"
-        placeholder="Enter a rating"
-        value={videogame.rating}
-        onChange={handleChange}
-      />
-      {errors.rating ? <span>{errors.rating}</span> : <span></span>}
-      <hr />
-      <label>Genres: </label>
-      {errors.genres ? <span>{errors.genres}</span> : <span></span>}
-      {genres?.map((genre) => {
-        return (
-          <p key={genre.id}>
-            <label>{genre.name}</label>
-            <input
-              type="checkbox"
-              value={genre.id}
-              id={genre.id}
-              onChange={handleSelectedGenres}
-              checked={selectedGenres.includes(genre.id)}
-            />
-          </p>
-        );
-      })}
-      <h4>Platforms:</h4>
-      {errors.platforms ? <span>{errors.platforms}</span> : <span></span>}
-      {platforms?.map((platform) => {
-        return (
-          <p key={platform.id}>
-            <label>{platform.name}</label>
-            <input
-              type="checkbox"
-              value={platform.id}
-              id={platform.id}
-              onChange={handleSelectedPlatforms}
-              checked={selectedPlatforms.includes(platform.id)}
-            />
-          </p>
-        );
-      })}
-      <button type="button" onClick={handleSubmit}>
-        Create
-      </button>
-      <Link to="/home">
-        <button>go home</button>
-      </Link>
-    </form>
+          <div class={styles.column}>
+            <h4>Platforms:</h4>
+            {errors.platforms ? <span>{errors.platforms}</span> : <span></span>}
+            {platforms?.map((platform) => {
+              return (
+                <label key={platform.id} className={styles.checkboxLabel}>
+                  {platform.name}
+                  <input
+                    type="checkbox"
+                    value={platform.id}
+                    id={platform.id}
+                    onChange={handleSelectedPlatforms}
+                    checked={selectedPlatforms.includes(platform.id)}
+                  />
+                </label>
+              );
+            })}
+          </div>
+        </div>
+        <button type="button" onClick={handleSubmit}>
+          Create
+        </button>
+        <Link to="/home">
+          <button>go home</button>
+        </Link>
+      </form>
+    </div>
   );
 }
 export default Form;
