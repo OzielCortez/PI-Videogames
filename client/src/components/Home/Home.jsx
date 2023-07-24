@@ -9,7 +9,6 @@ import SearchBar from "../SearchBar/SearchBar";
 import FilterGenre from "../Filters/FilterGenre";
 import FilterApi from "../Filters/FilterApi";
 import Pagination from "../Pagination/Pagination";
-import background from "C:/Users/oziel/Desktop/PI-Videogames-main/client/src/assets/DetailPage1.png";
 
 function Home() {
   const dispatch = useDispatch();
@@ -31,18 +30,14 @@ function Home() {
 
   return (
     <div className={styles.background}>
-      {/* {<img src={background} alt="backgroundHome" className={styles.img} />} */}
       <header className={styles.columns}>
         <div className={styles.left_column}>
           <FilterGenre />
           <FilterApi />
           <Link to="/videogames">
-            <button>Create videogame</button>
+            <button className={styles.button}>Create videogame</button>
           </Link>
         </div>
-        {/* <div className={styles.center_column}>
-          <h1>My videogames</h1>
-        </div> */}
       </header>
       <main className={styles.main}>
         <div className={styles.top_bar}>

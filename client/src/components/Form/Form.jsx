@@ -232,11 +232,11 @@ function Form() {
             })}
           </div>
         </div>
-        <button type="button" onClick={handleSubmit}>
+        <button type="button" onClick={handleSubmit} className={styles.button}>
           Create
         </button>
         <Link to="/home">
-          <button>go home</button>
+          <button className={styles.button}>go home</button>
         </Link>
       </form>
     </div>
