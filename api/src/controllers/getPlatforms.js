@@ -11,7 +11,7 @@ const getPlatforms = async () => {
       `https://api.rawg.io/api/platforms?key=${YOUR_API_KEY}`
     );
     const data = platformsFromApi.data.results; //
-    console.log(platformsFromApi);
+
     for (let i = 0; i < data.length; i++) {
       const platforms = data[i];
       await Platforms.findOrCreate({

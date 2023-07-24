@@ -13,6 +13,9 @@ const OrderVideogames = () => {
   return (
     <div>
       <select onChange={(e) => orderBy(e)} defaultValue="">
+        <option selected hidden>
+          Order Videogames
+        </option>
         <option disabled>Order by Name</option>
         <option value="A-Z">A-Z</option>
         <option value="Z-A">Z-A</option>

@@ -18,7 +18,9 @@ const FilterGenre = () => {
   return (
     <div>
       <select onChange={(e) => filterGen(e)} defaultValue="">
-        <option disabled>Genres</option>
+        <option selected hidden>
+          Filter by Genres
+        </option>
         <option value="All">All</option>
         {genres?.map((genre) => {
           return (

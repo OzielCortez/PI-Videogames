@@ -1,7 +1,7 @@
 import {
   GET_VIDEOGAMES,
   GET_VIDEOGAME_BY_NAME,
-  GET_VIDEOGAME_DETAILS,
+  GET_VIDEOGAME_BY_ID,
   GET_GENRES,
   CREATE_VIDEOGAME,
   ORDER_ALL_VIDEOGAMES,
@@ -9,12 +9,14 @@ import {
   FILTER_DBAPI,
   CHANGE_PAGE,
   SET_PAGE,
+  GET_PLATFORMS,
 } from "./actions";
 const initialState = {
   videogames: [],
   genres: [],
+  platforms: [],
   searchResults: [],
-  selectedVideogame: [],
+  videogameDetail: [],
   videogamesBackup: [],
   currentPage: 1,
 };
@@ -24,11 +26,13 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case GET_VIDEOGAMES:
       return { ...state, videogames: payload, videogamesBackup: payload };
     case GET_VIDEOGAME_BY_NAME:
-      return { ...state, searchResults: payload };
-    case GET_VIDEOGAME_DETAILS:
-      return { ...state, selectedVideogame: payload };
+      return { ...state, videogames: payload };
+    case GET_VIDEOGAME_BY_ID:
+      return { ...state, videogameDetail: payload };
     case GET_GENRES:
       return { ...state, genres: payload };
+    case GET_PLATFORMS:
+      return { ...state, platforms: payload };
     case CREATE_VIDEOGAME:
       return { ...state, videogames: [...state.videogames, payload] };
     case ORDER_ALL_VIDEOGAMES:
@@ -43,12 +47,16 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return { ...state, videogames: orderVideogames };
     case FILTER_BY_GENRE:
       let copyVideogame = [...state.videogames];
+
       let objetosFiltrados = [];
+      let objetosFiltradosDB = [];
       if (payload === "All") objetosFiltrados = state.videogamesBackup;
       else {
         copyVideogame = state.videogamesBackup;
         objetosFiltrados = copyVideogame.filter((objeto) => {
-          return objeto.genres.some((genre) => genre.name === payload);
+          return objeto.genres.some(
+            (genre) => genre.name === payload || genre === payload
+          );
         });
       }
       return { ...state, videogames: objetosFiltrados };

@@ -12,6 +12,9 @@ const FilterApi = () => {
   return (
     <div>
       <select onChange={(e) => handleFilter(e)} defaultValue="">
+        <option selected hidden>
+          Filter by
+        </option>
         <option value="All">All</option>
         <option value="Api">Api</option>
         <option value="Db">Database</option>

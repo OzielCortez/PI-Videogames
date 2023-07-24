@@ -1,38 +1,48 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styles from "../VideogameDetail/VideogameDetail.module.css";
 import { useParams } from "react-router-dom";
-import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getById } from "../../redux/actions";
+import { Link } from "react-router-dom";
 
 function VideogameDetail() {
   const { id } = useParams();
-  let genresToString = "";
-  const videogames = useSelector((state) => state.videogames);
-  const videogame = videogames.filter((vg) => vg.id === Number(id));
-  console.log(videogame[0].platforms[0]);
-  if (typeof videogame[0].genres[0] === "string")
-    genresToString = videogame[0].genres.join(", ");
-  else if (typeof videogame[0].genres === "object")
-    genresToString = videogame[0].genres
-      ? videogame[0].genres.map((genre) => genre.name).join(", ")
-      : " ";
+  const dispatch = useDispatch();
+  const videogame = useSelector((state) => state.videogameDetail);
+
+  /* console.log(videogame.genres); */
+  useEffect(() => {
+    dispatch(getById(id));
+  }, [id]);
 
   return (
     <div>
       <p>Detail</p>
-      <p>{`Name: ${videogame[0].name}`}</p>
-      <p>{`Description: ${undefined ? videogame[0].description : ""}`}</p>
-      <p>{`Platforms: ${videogame[0].platforms.join(", ")}`}</p>
-      <p>{`Launch date: ${
-        videogame[0].launchDate || videogame[0].releaseDate
+      <p>{`Name: ${videogame?.name}`}</p>
+      <p>{`Description: ${videogame.description?.replace(/<[^>]*>/g, "")}`}</p>
+      <p>{`Platforms: ${
+        videogame.platforms &&
+        Array.isArray(videogame.platforms) &&
+        !videogame.source
+          ? videogame.platforms.join(", ")
+          : videogame.platforms?.map((platform) => platform.name).join(", ")
       }`}</p>
-      <p>{`Rating: ${videogame[0].rating}`}</p>
-      <p>{`Genres: ${genresToString}`}</p>
+      <p>{`Launch date: ${videogame.release_date || videogame.launchDate}`}</p>
+      <p>{`Rating: ${videogame.rating}`}</p>
+      <p>{`Genres: ${
+        videogame.genres && Array.isArray(videogame.genres) && !videogame.source
+          ? videogame.genres.join(", ")
+          : videogame.genres?.map((genre) => genre.name).join(", ")
+      }`}</p>
       <img
-        src={videogame[0].image}
-        alt={videogame[0].name}
+        src={videogame.image}
+        alt={videogame.name}
         className={styles.image}
       />
+      <hr />
+      <Link to={"/home"}>
+        <button>Go home</button>
+      </Link>
     </div>
   );
 }

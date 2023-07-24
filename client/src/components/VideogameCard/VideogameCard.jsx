@@ -1,7 +1,16 @@
-import style from "../VideogameCard/VideogameCard.module.css";
+import styles from "../VideogameCard/VideogameCard.module.css";
 import { Link } from "react-router-dom";
-function VideogameCard({ id, name, image, launchDate, genres }) {
+function VideogameCard({
+  id,
+  name,
+  image,
+  launchDate,
+  genres,
+  platforms,
+  description,
+}) {
   let genresToString = "";
+  let platformsToString = "";
 
   if (genres && genres.length > 0) {
     if (typeof genres[0] === "string") {
@@ -11,14 +20,24 @@ function VideogameCard({ id, name, image, launchDate, genres }) {
     }
   }
 
+  /*   if (platforms && platforms.length > 0) {
+    if (typeof platforms[0] === "string") {
+      platformsToString = platforms.join(", ");
+    } else if (typeof platforms[0] === "object") {
+      platformsToString = platforms.map((platform) => platform.name).join(", ");
+    }
+  } */
+
   return (
-    <div className={style.card}>
-      <Link to={`/videogames/${id}`}>
-        <p className={style.name_grid}>{name}</p>
-      </Link>
-      <p>{genresToString}</p>
-      <img src={image} alt={name} className={style.image} />
-    </div>
+    <Link to={`/videogames/${id}`}>
+      <div className={styles.card}>
+        <h1 className={styles.name}>{name}</h1>
+
+        <img src={image} alt={name} className={styles.image} />
+
+        <p className={styles.genre}>{genresToString}</p>
+      </div>
+    </Link>
   );
 }
 export default VideogameCard;

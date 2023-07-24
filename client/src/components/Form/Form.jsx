@@ -1,22 +1,24 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import styles from "../Form/Form.module.css";
 import { useState } from "react";
-import { createVideogame, getGenres } from "../../redux/actions";
+import { createVideogame, getGenres, getPlatforms } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import validate from "./validate";
 
 function Form() {
   const dispatch = useDispatch();
   const genres = useSelector((state) => state.genres);
+  const platforms = useSelector((state) => state.platforms);
 
   const [videogame, setVideogame] = useState({
     name: "",
     description: "",
-    platforms: "",
     image: "",
     launchDate: "",
     rating: 0,
     genres: [],
+    platforms: [],
   });
 
   const [errors, setErrors] = useState({
@@ -26,12 +28,15 @@ function Form() {
     launchDate: "",
     rating: "",
     genres: "",
+    platforms: "",
   });
 
   const [selectedGenres, setSelectedGenres] = useState([]);
+  const [selectedPlatforms, setSelectedPlatforms] = useState([]);
 
   useEffect(() => {
     if (genres) dispatch(getGenres());
+    if (platforms) dispatch(getPlatforms());
   }, [dispatch]);
 
   const handleChange = (event) => {
@@ -48,16 +53,22 @@ function Form() {
     event.preventDefault();
     //Si hago con !errors siempre será verdadero si devuelve {}
     if (Object.keys(errors).length === 0) {
-      dispatch(createVideogame({ ...videogame, genres: [...selectedGenres] }));
+      dispatch(
+        createVideogame({
+          ...videogame,
+          genres: [...selectedGenres],
+          platforms: [...selectedPlatforms],
+        })
+      );
       setVideogame({
         name: "",
         description: "",
-        platforms: "",
         image: "",
         launchDate: "",
         rating: 0,
       });
       setSelectedGenres([]);
+      setSelectedPlatforms([]);
       alert("Se ha creado con exito");
     } else {
       alert("Cumplir con los requisitos antes de crear un videojuego");
@@ -91,6 +102,37 @@ function Form() {
       );
     }
   };
+
+  const handleSelectedPlatforms = async (event) => {
+    let platformsId = event.target.value;
+    if (event.target.checked) {
+      setSelectedPlatforms([...selectedPlatforms, parseInt(platformsId)]);
+      setVideogame({ ...videogame, platforms: selectedPlatforms });
+      setErrors(
+        validate({
+          ...videogame,
+          platforms: [...videogame.platforms, event.target.value],
+        })
+      );
+    } else {
+      //Cuando se deseleccionan los checkboxs, estos actualizan
+      setSelectedPlatforms(
+        selectedPlatforms.filter((id) => id !== parseInt(platformsId))
+      );
+      setErrors(
+        validate(
+          {
+            ...videogame,
+            platforms: videogame.platforms.filter(
+              (vg) => vg !== event.target.value
+            ),
+          },
+          [...platforms]
+        )
+      );
+    }
+  };
+
   return (
     <form action="">
       <label htmlFor="">Name: </label>
@@ -112,7 +154,7 @@ function Form() {
         onChange={handleChange}
       />
       {errors.description ? <span>{errors.description}</span> : <span></span>}
-
+      {/* 
       <label htmlFor="">Platforms: </label>
       <input
         type="text"
@@ -120,7 +162,7 @@ function Form() {
         placeholder="Disponibilidad en plataformas"
         value={videogame.platforms}
         onChange={handleChange}
-      />
+      /> */}
 
       <label htmlFor="">Image: </label>
       <input
@@ -168,9 +210,28 @@ function Form() {
           </p>
         );
       })}
+      <h4>Platforms:</h4>
+      {errors.platforms ? <span>{errors.platforms}</span> : <span></span>}
+      {platforms?.map((platform) => {
+        return (
+          <p key={platform.id}>
+            <label>{platform.name}</label>
+            <input
+              type="checkbox"
+              value={platform.id}
+              id={platform.id}
+              onChange={handleSelectedPlatforms}
+              checked={selectedPlatforms.includes(platform.id)}
+            />
+          </p>
+        );
+      })}
       <button type="button" onClick={handleSubmit}>
         Create
       </button>
+      <Link to="/home">
+        <button>go home</button>
+      </Link>
     </form>
   );
 }

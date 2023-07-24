@@ -9,7 +9,6 @@ import VideogameDetail from "./components/VideogameDetail/VideogameDetail.jsx";
 function App() {
   return (
     <>
-      <h1>Bienvenida</h1>
       <Routes>
         <Route path="/" element={<WelcomePage />} />
         <Route path="/home" element={<Home />} />

@@ -1,18 +1,45 @@
 const { Videogame } = require("../db.js");
-const { Genre } = require("../db.js");
+const { Genre, Platforms } = require("../db.js");
 const { YOUR_API_KEY } = process.env;
 const axios = require("axios");
+
 const getVideogamesById = async (id) => {
   try {
-    const getVideogameDB = await Videogame.findByPk(id, { include: Genre });
+    if (id.includes("-")) {
+      let getVideogame = await Videogame.findOne({
+        where: { id },
+        include: [
+          { model: Genre, through: { attributes: [] } },
+          { model: Platforms, through: { attributes: [] } },
+        ],
+      });
 
-    const getVideogameApi = await axios.get(
+      if (!getVideogame)
+        return { status: 404, message: "Videogame id doesn't exists" };
+
+      getVideogame.genres.map((genre) => genre.name);
+      getVideogame.platforms.map((platform) => platform.name);
+
+      return getVideogame;
+    }
+
+    const response = await axios.get(
       `https://api.rawg.io/api/games/${id}?key=${YOUR_API_KEY}`
     );
 
-    if (!getVideogame && !getVideogameApi)
-      return { status: 404, message: "Videogame id doesn't exists" };
-    const getVideogame = [...getVideogameDB, ...getVideogameApi];
+    const data = response.data;
+
+    const getVideogame = {
+      id: data.id,
+      name: data.name,
+      description: data.description,
+      release_date: data.released,
+      rating: data.rating,
+      image: data.background_image,
+      genres: data.genres.map((genre) => genre.name),
+      platforms: data.platforms.map((pl) => pl.platform.name),
+    };
+
     return getVideogame;
   } catch (error) {
     throw { status: error?.status, message: error?.message };

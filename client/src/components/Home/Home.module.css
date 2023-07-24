@@ -1,0 +1,119 @@
+/*
+@font-face {
+  font-family: "Pixel"; 
+  src: url("C:/Users/oziel/Desktop/PI-Videogames-main/client/src/assets/Pixeled.ttf")
+    format("truetype"); 
+}
+
+.background {
+  background-color: gainsboro;
+}
+.columns {
+  background-image: url("C:/Users/oziel/Desktop/PI-Videogames-main/client/src/assets/topBar.png");
+  background-repeat: no-repeat;
+
+  background-size: 100% auto; 
+  max-height: 200px; 
+  display: block;
+  margin: 0;
+  width: 100%;
+  height: 126px;
+
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.left_column {
+  display: block;
+  width: 30%;
+}
+.center_column {
+  width: 45%;
+  -webkit-box-flex: 1;
+  text-align: center;
+  justify-content: center;
+}
+.center_column h1 {
+  font-family: "Pixel", sans-serif;
+  font-size: 50px;
+}
+
+.main {
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  margin: 20px 0px 15px 0px;
+}
+.top_bar {
+  display: flex;
+  margin: 10px 35px 10px 40px;
+}
+.top_left {
+  display: block;
+  width: 50%;
+}
+.top_right {
+  width: 50%;
+}
+
+.body_videogames {
+  display: flex;
+  transition: transform 1s ease;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+}
+
+.footer {
+  background-repeat: no-repeat;
+  background-size: cover; 
+  height: 126px;
+  display: block;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+
+  background-image: url("C:/Users/oziel/Desktop/PI-Videogames-main/client/src/assets/bottomBarwNintendo.png");
+  
+}
+.footer_pagination {
+  margin: 0px 0px 20px 0px;
+}
+
+@media screen and (max-width: 768px) {
+  .columns {
+    height: 70px; 
+  }
+
+  .footer {
+    height: 90px; 
+  }
+}
+*/
+
+.background {
+  background-color: gainsboro;
+  display: flex; /* Usar flex para organizar los elementos internos */
+  flex-direction: column; /* Alinear los elementos verticalmente */
+  min-height: 100vh; /* Asegurar que el contenedor tenga al menos la altura de la ventana */
+  margin: 0; /* Resetear márgenes para evitar espacios no deseados */
+  padding: 0;
+}
+.columns {
+  flex: 0 0 auto; /* No crecer ni encoger, tamaño automático */
+  background-image: url("C:/Users/oziel/Desktop/PI-Videogames-main/client/src/assets/topBar.png");
+  background-size: cover;
+}
+.body_videogames {
+  flex: 1; /* Crecer para ocupar el espacio disponible */
+  display: flex;
+  transition: transform 1s ease;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+}
+
+.footer {
+  flex: 0 0 auto; /* No crecer ni encoger, tamaño automático */
+  background-image: url("C:/Users/oziel/Desktop/PI-Videogames-main/client/src/assets/bottomBarwNintendo.png");
+  background-size: cover;
+}

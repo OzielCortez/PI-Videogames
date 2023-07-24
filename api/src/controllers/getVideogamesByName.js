@@ -1,5 +1,5 @@
 const { Videogame } = require("../db.js");
-const { Genre } = require("../db.js");
+const { Genre, Platforms } = require("../db.js");
 const axios = require("axios");
 const { YOUR_API_KEY } = process.env;
 
@@ -9,7 +9,7 @@ const getVideogamesByName = async (name) => {
     console.log(name); */
     const findVideogamesByNameDB = await Videogame.findAll({
       where: { name },
-      include: Genre,
+      include: [Genre, Platforms],
     });
     const findVideogamesByNameAPI = await axios.get(
       `https://api.rawg.io/api/games?search=${name}&key=${YOUR_API_KEY}`

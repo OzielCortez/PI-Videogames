@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getVideogameByName } from "../../redux/actions";
 import { useState } from "react";
 import VideogameCard from "../VideogameCard/VideogameCard";
-
+import styles from "../SearchBar/SearchBar.module.css";
 const SearchBar = () => {
   const dispatch = useDispatch();
 
@@ -13,14 +13,22 @@ const SearchBar = () => {
   };
   const handleSearch = () => {
     dispatch(getVideogameByName(name));
+    setName("");
   };
-  const response = useSelector((state) => state.searchResults);
-  console.log(response);
+  const response = useSelector((state) => state.videogames);
+
   return (
-    <div>
-      <input type="text" onChange={handleChange} value={name} />
-      <button onClick={handleSearch}>Search</button>
-      {response.map((videogame) => {
+    <div className={styles.container}>
+      <input
+        type="text"
+        onChange={handleChange}
+        value={name}
+        className={styles.bar}
+      />
+      <button className={styles.button} onClick={handleSearch}>
+        Search
+      </button>
+      {/* {response.map((videogame) => {
         return (
           <VideogameCard
             key={videogame.id}
@@ -30,7 +38,7 @@ const SearchBar = () => {
             genres={videogame.genres || videogame.genres.name}
           />
         );
-      })}
+      })} */}
     </div>
   );
 };

@@ -15,11 +15,13 @@ export default function Pagination({ totalPages }) {
   const nextPage = () => {
     dispatch(setPage(currentPage + 1));
     setInput(currentPage + 1);
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
 
   const previousPage = () => {
     dispatch(setPage(currentPage - 1));
     setInput(currentPage - 1);
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
 
   const handleChange = (event) => {

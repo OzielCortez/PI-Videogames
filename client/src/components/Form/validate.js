@@ -27,6 +27,10 @@ function validate(videogame) {
       pattern: /\b\d+\b/,
       errorMessage: "Debes seleccionar al menos un género",
     },
+    platforms: {
+      pattern: /\b\d+\b/,
+      errorMessage: "Debes seleccionar al menos una plataforma",
+    },
   };
 
   let errorVideogame = {};
