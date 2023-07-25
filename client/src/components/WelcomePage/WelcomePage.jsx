@@ -1,16 +1,25 @@
 import React from "react";
 import styles from "../WelcomePage/WelcomePage.module.css";
 import { Link } from "react-router-dom";
-import background from "C:/Users/oziel/Desktop/PI-Videogames-main/client/src/assets/DetailPage1.png";
 
 function WelcomePage(props) {
   return (
     <div className={styles.container}>
-      <img src={background} alt="LandingPage" />
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-...+QfHtkGdrwNIVln+0hbh6MjriuAwggHRKlY2.."
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+      />
       <p className={styles.content}>
         <h1>Bienvenido</h1>
         <Link to={"/home"}>
-          <button>HomePage</button>
+          <button>
+            <i
+              className={`fas fa-house-user ${styles.iconContainer} ${styles.pulse}`}
+            />
+          </button>
         </Link>
       </p>
     </div>

@@ -1,32 +1,53 @@
 .container {
-  max-height: 1440px;
-  max-width: 2560px;
+  display: flex;
   overflow: hidden;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
+  background-color: #f0ead6;
 }
 
 .content {
-  position: absolute;
+  background-image: url("https://resources.sanborns.com.mx/imagenes-sanborns-ii/1200/45496883386_2.jpg");
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
   z-index: 2;
+  font-variant: small-caps;
+  font-size: 100px;
+  color: #191919;
 }
 .content button {
   transition: box-shadow 0.3s ease;
   padding: 10px 20px;
   font-size: 18px;
   color: white;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0);
   border: none;
   cursor: pointer;
 }
 .content h1 {
-  color: aliceblue;
+  color: #191919;
 }
 .content button:hover {
   box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.3);
+}
+.iconContainer {
+  animation: pulse 3s infinite; /* Aplica la animación "pulse" durante 2 segundos, infinitamente */
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1); /* Tamaño normal */
+  }
+  50% {
+    transform: scale(1.1); /* Escala al 110% */
+  }
+  100% {
+    transform: scale(1); /* Vuelve al tamaño normal */
+  }
+}
+
+.pulse {
+  font-size: 50px; /* Ajusta el tamaño del icono según tus necesidades */
+  color: #191919; /* Ajusta el color del icono según tus necesidades */
 }
