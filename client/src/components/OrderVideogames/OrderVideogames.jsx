@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { orderAllVideogames } from "../../redux/actions";
 import { useState } from "react";
+import styles from "../OrderVideogames/OrderVideogames.module.css";
 
 const OrderVideogames = () => {
   const dispatch = useDispatch();
@@ -11,8 +12,12 @@ const OrderVideogames = () => {
     setOrder(`Ordenado por nombre: ${event.target.value}`);
   };
   return (
-    <div>
-      <select onChange={(e) => orderBy(e)} defaultValue="">
+    <div className={styles.orderBar}>
+      <select
+        onChange={(e) => orderBy(e)}
+        defaultValue=""
+        className={styles.select}
+      >
         <option selected hidden>
           Order Videogames
         </option>

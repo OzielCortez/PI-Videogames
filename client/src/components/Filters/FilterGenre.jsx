@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getGenres } from "../../redux/actions";
 import { filterByGenre } from "../../redux/actions";
 import { useEffect } from "react";
+import styles from "../Filters/FilterGenre.module.css";
 
 const FilterGenre = () => {
   const dispatch = useDispatch();
@@ -16,8 +17,12 @@ const FilterGenre = () => {
     dispatch(filterByGenre(event.target.value));
   };
   return (
-    <div>
-      <select onChange={(e) => filterGen(e)} defaultValue="">
+    <div className={styles.filterGenre}>
+      <select
+        onChange={(e) => filterGen(e)}
+        defaultValue=""
+        className={styles.select}
+      >
         <option selected hidden>
           Filter by Genres
         </option>

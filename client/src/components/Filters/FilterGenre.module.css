@@ -1,0 +1,42 @@
+.filterGenre {
+  padding: 20px 5px 10px 5%;
+  max-width: 13em;
+  position: relative;
+  width: 100%;
+}
+.select {
+  appearance: none; /* Quita los estilos nativos del sistema operativo */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: lightgray;
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 14px;
+}
+
+.select:hover {
+  background-color: gray;
+  border-color: gray;
+}
+
+.select:focus {
+  outline: none;
+  box-shadow: 0 0 5px #5669747b; /* Agrega un efecto de sombra cuando el select está activo */
+}
+
+/* Estilo para las opciones dentro del select menu */
+.select option {
+  padding: 8px;
+}
+
+.select::after {
+  content: "\25BC";
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none; /* Evita que la flecha se pueda clicar */
+}

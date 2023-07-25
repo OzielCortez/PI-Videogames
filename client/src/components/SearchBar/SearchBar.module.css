@@ -1,6 +1,6 @@
 .container {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
   height: 50px;
 }
@@ -9,20 +9,23 @@
   width: 190px;
   height: 20px;
   background-color: #dbd8d8;
-  margin-right: 10px;
+  margin-right: 5px;
   border-radius: 8px;
+  margin-left: 10px;
 }
 
 .button {
   transition: box-shadow 0.3s ease;
   padding: 8px 18px;
-  background-color: #075d17;
-  color: #fff;
+  margin: 0px 10px;
+  font-size: 25px;
+  background-color: whitesmoke;
+  color: blue;
   border: none;
   border-radius: 5px;
 }
 .button:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  background-color: gray;
+  background-color: lightslategray;
   cursor: pointer;
 }

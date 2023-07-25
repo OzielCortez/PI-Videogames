@@ -10,7 +10,6 @@ function VideogameCard({
   description,
 }) {
   let genresToString = "";
-  let platformsToString = "";
 
   if (genres && genres.length > 0) {
     if (typeof genres[0] === "string") {
@@ -20,21 +19,12 @@ function VideogameCard({
     }
   }
 
-  /*   if (platforms && platforms.length > 0) {
-    if (typeof platforms[0] === "string") {
-      platformsToString = platforms.join(", ");
-    } else if (typeof platforms[0] === "object") {
-      platformsToString = platforms.map((platform) => platform.name).join(", ");
-    }
-  } */
-
   return (
     <Link to={`/videogames/${id}`}>
       <div className={styles.card}>
-        <h1 className={styles.name}>{name}</h1>
+        {/* <h1 className={styles.name}>{name}</h1> */}
 
         <img src={image} alt={name} className={styles.image} />
-
         <p className={styles.genre}>{genresToString}</p>
       </div>
     </Link>

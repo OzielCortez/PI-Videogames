@@ -26,19 +26,8 @@ const SearchBar = () => {
         className={styles.bar}
       />
       <button className={styles.button} onClick={handleSearch}>
-        Search
+        <i className="fas fa-search" />
       </button>
-      {/* {response.map((videogame) => {
-        return (
-          <VideogameCard
-            key={videogame.id}
-            id={videogame.id}
-            name={videogame.name}
-            image={videogame.image || videogame.background_image}
-            genres={videogame.genres || videogame.genres.name}
-          />
-        );
-      })} */}
     </div>
   );
 };
