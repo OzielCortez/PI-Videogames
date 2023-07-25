@@ -149,6 +149,9 @@
   font-size: 25px;
   color: orange;
 }
+.createButton:hover {
+  background-color: #191919d9;
+}
 .homeButton {
   background-color: whitesmoke;
   border: 0;
@@ -158,6 +161,9 @@
   width: 50px;
 }
 
+.homeButton:hover {
+  background-color: #191919d9;
+}
 .hrContainer {
   width: 200x; /* Establece el ancho deseado del hr-container */
   margin: 0 auto; /* Centra el hr-container horizontalmente */

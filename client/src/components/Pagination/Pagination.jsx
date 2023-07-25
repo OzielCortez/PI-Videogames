@@ -50,19 +50,13 @@ export default function Pagination({ totalPages }) {
       <button disabled={input === 1 || input < 1} onClick={previousPage}>
         Previous
       </button>
-      <input
-        onChange={handleChange}
-        value={input}
-        onKeyDown={onKeyDown}
-        autoComplete="off"
-      />
+      <p>{`${currentPage} of ${totalPages}`}</p>
       <button
         disabled={input === totalPages || input > totalPages}
         onClick={nextPage}
       >
         Next
       </button>
-      <p>{`${currentPage} of ${totalPages}`}</p>
     </div>
   );
 }

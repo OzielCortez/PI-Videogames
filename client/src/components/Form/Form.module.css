@@ -1,11 +1,15 @@
 .fondo {
-  background-color: #4a5b75;
+  background-image: url("C:/Users/oziel/Desktop/PI-Videogames-main/client/src/assets/MarioForms.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 20px;
 }
 .background {
-  background-color: whitesmoke; /* Cambia "ruta_de_la_imagen.jpg" por la ruta de tu imagen */
-  background-size: cover; /* Ajustar la imagen para que cubra todo el contenedor */
-  background-repeat: no-repeat; /* Evitar que se repita la imagen */
-  background-position: center; /* Centrar la imagen dentro del contenedor */
+  background-color: rgba(0, 0, 0, 0.5);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   padding: 20px;
 }
 
@@ -13,7 +17,6 @@ form {
   padding: 20px;
 }
 
-/* Estilos para cada grupo de elementos (label, input y span) dentro del formulario */
 .formGroup {
   margin-bottom: 15px;
 }
@@ -35,7 +38,6 @@ form {
   margin-top: 5px;
 }
 
-/* Estilos para los botones */
 form button {
   padding: 10px 20px;
   background-color: #007bff;
@@ -45,7 +47,6 @@ form button {
   margin-right: 10px;
 }
 
-/* Estilos específicos para el botón de "Go home" */
 form a {
   text-decoration: none;
 }
@@ -54,9 +55,8 @@ form a button {
   background-color: #dc3545;
 }
 
-/* Ajustar el ancho del formulario para centrarlo en la página */
 form {
-  max-width: 500px;
+  max-width: 800px;
   margin: 0 auto;
 }
 
@@ -64,19 +64,16 @@ form {
   display: flex;
 }
 
-/* Estilos para cada columna (Genres y Platforms) */
 .column {
   display: flex;
   flex-direction: column;
-  margin-right: 20px; /* Espacio entre las columnas */
+  margin-right: 20px;
 }
 
-/* Estilos para cada label que contiene el texto y el checkbox */
 .checkboxLabel {
-  margin-bottom: 10px; /* Espacio entre cada checkbox */
+  margin-bottom: 10px;
 }
 
-/* Asegurar que el checkbox esté alineado verticalmente con el texto */
 .checkboxLabel input {
   margin-right: 5px;
 }

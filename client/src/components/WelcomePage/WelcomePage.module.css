@@ -19,11 +19,14 @@
 .content button {
   transition: box-shadow 0.3s ease;
   padding: 10px 20px;
-  font-size: 18px;
+  font-size: 25px;
   color: white;
   background-color: rgba(0, 0, 0, 0);
   border: none;
   cursor: pointer;
+  border-radius: 50%; /* Borde con forma de círculo */
+  width: 100px; /* Ajusta el ancho del botón según tus necesidades */
+  height: 100px;
 }
 .content h1 {
   color: #191919;

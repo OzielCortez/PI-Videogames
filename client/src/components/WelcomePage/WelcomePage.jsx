@@ -13,7 +13,6 @@ function WelcomePage(props) {
         referrerpolicy="no-referrer"
       />
       <p className={styles.content}>
-        <h1>Bienvenido</h1>
         <Link to={"/home"}>
           <button>
             <i
@@ -21,6 +20,7 @@ function WelcomePage(props) {
             />
           </button>
         </Link>
+        <h1>Bienvenido</h1>
       </p>
     </div>
   );
