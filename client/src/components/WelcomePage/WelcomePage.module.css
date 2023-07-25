@@ -3,9 +3,29 @@
   overflow: hidden;
   background-color: #f0ead6;
 }
+.gif {
+  position: absolute;
+  top: 50%;
+  left: -100px;
+  width: 150px;
+  height: 150px;
+  animation: move-in-out 8s linear infinite;
+}
 
+@keyframes move-in-out {
+  0% {
+    left: -100%;
+  }
+  50% {
+    left: 0;
+  }
+  100% {
+    left: 85%;
+  }
+}
 .content {
-  background-image: url("https://resources.sanborns.com.mx/imagenes-sanborns-ii/1200/45496883386_2.jpg");
+  background-position: 10%;
+  background-position-y: 20%;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -15,6 +35,10 @@
   font-variant: small-caps;
   font-size: 100px;
   color: #191919;
+}
+.animate-content {
+  /* Agrega la nueva posición "left" para el movimiento */
+  left: 80%;
 }
 .content button {
   transition: box-shadow 0.3s ease;

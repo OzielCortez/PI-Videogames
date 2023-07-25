@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../WelcomePage/WelcomePage.module.css";
 import { Link } from "react-router-dom";
-
+import marioGif from "C:/Users/oziel/Desktop/PI-Videogames-main/client/src/assets/2d-mario-running.gif";
 function WelcomePage(props) {
   return (
     <div className={styles.container}>
@@ -20,8 +20,10 @@ function WelcomePage(props) {
             />
           </button>
         </Link>
+
         <h1>Bienvenido</h1>
       </p>
+      <img src={marioGif} alt="Mario corriendo" className={styles.gif} />
     </div>
   );
 }

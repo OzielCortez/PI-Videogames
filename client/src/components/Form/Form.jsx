@@ -163,7 +163,7 @@ function Form() {
             <span></span>
           )}
         </div>
-        <label htmlFor="">Image: </label>
+        <label htmlFor=""> Image: </label>
         <input
           type="url"
           name="image"
@@ -173,7 +173,7 @@ function Form() {
         />
         {errors.image ? <span>{errors.image}</span> : <span></span>}
 
-        <label htmlFor="">Launch date: </label>
+        <label htmlFor=""> Launch date: </label>
         <input
           type="text"
           name="launchDate"
@@ -183,7 +183,7 @@ function Form() {
         />
         {errors.launchDate ? <span>{errors.launchDate}</span> : <span></span>}
 
-        <label htmlFor="">Rating: </label>
+        <label htmlFor=""> Rating: </label>
         <input
           type="text"
           name="rating"
@@ -213,7 +213,7 @@ function Form() {
             })}
           </div>
 
-          <div class={styles.column}>
+          <div class={styles.checkboxContainer}>
             <h4>Platforms:</h4>
             {errors.platforms ? <span>{errors.platforms}</span> : <span></span>}
             {platforms?.map((platform) => {

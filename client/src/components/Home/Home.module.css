@@ -9,68 +9,7 @@
     height: 90px; 
   }
 }
-
-.background {
-  margin: 0;
-  padding: 0;
-  background-image: url("https://w.forfun.com/fetch/34/34d2d511e7ca8472b9b67082104b1fc8.jpeg");
-}*/
-/* TOP */
-/* .columns {
-  height: 133px;
-  background-image: url("C:/Users/oziel/Desktop/PI-Videogames-main/client/src/assets/topBar.png");
-  background-repeat: no-repeat;
-}
-/* MID */
-/* .main {
-  background-color: gray;
-  display: flex;
-  flex-wrap: nowrap;
-  width: calc(88% + 30px);
-  margin: 34px auto 20px auto;
-}
-.top_bar {
-  background-color: gainsboro;
-}
-.top_left {
-  display: grid;
-}
-.body_videogames {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(280px, 770px));
-} */
-/* BOTTOM */
-/*
-.footer {
-  height: 1920px;
-  height: 126px;
-  background-image: url("C:/Users/oziel/Desktop/PI-Videogames-main/client/src/assets/bottomBarwNintendo.png");
-  background-repeat: no-repeat;
-}
-.button {
-  font-family: "Open Sans", sans-serif;
-  font-size: 16px;
-  margin: 10px 0px 0px 15%;
-  text-decoration: none;
-  color: #000;
-  cursor: pointer;
-  border: 3px solid;
-  padding: 0.25em 0.5em;
-  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
-    5px 5px 0px 0px;
-  position: relative;
-  user-select: none;
-  -webkit-user-select: none;
-  border-radius: 10px;
-  touch-action: manipulation;
-}
-
-.button:active {
-  box-shadow: 0px 0px 0px 0px;
-  top: 5px;
-  left: 5px;
-}
- */
+*/
 
 .background {
   height: 100vh;
